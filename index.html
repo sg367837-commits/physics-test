@@ -2,57 +2,38 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SGS Bhojpur - VVI Objective Test</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #059669;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --card-bg: #ffffff;
-            --border: #e2e8f0;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --danger: #ef4444;
-            --radius: 16px;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background: #f1f5f9; color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding-bottom: 30px; }
-        header { width: 100%; background: linear-gradient(135deg, #1e3a8a, #2563eb); color: white; padding: 18px 20px; text-align: center; box-shadow: 0 4px 15px rgba(37,99,235,0.2); }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background: #f1f5f9; color: #1e293b; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding-bottom: 30px; }
+        header { width: 100%; background: #2563eb; color: white; padding: 18px 20px; text-align: center; }
         header h1 { font-size: 1.25rem; font-weight: 800; }
-        header p { font-size: 0.85rem; opacity: 0.9; margin-top: 3px; }
-        .container { width: 100%; max-width: 580px; padding: 16px; }
-        .card { background: white; border-radius: var(--radius); padding: 22px; box-shadow: 0 8px 25px rgba(0,0,0,0.06); border: 1px solid var(--border); margin-bottom: 16px; }
-        .form-group { margin-bottom: 16px; text-align: left; }
-        .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: var(--text-main); }
-        .form-control { width: 100%; padding: 12px 14px; border: 2px solid var(--border); border-radius: 10px; font-size: 0.95rem; outline: none; transition: 0.2s; }
-        .form-control:focus { border-color: var(--primary); }
-        .subject-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 16px; background: #f8fafc; border: 2px solid var(--border); border-radius: 12px; margin-bottom: 12px; cursor: pointer; text-align: left; transition: all 0.2s ease; }
-        .subject-btn:active { transform: scale(0.98); background: #eff6ff; border-color: var(--primary); }
-        .subject-btn .info h3 { font-size: 1rem; font-weight: 700; color: var(--dark); }
-        .subject-btn .info p { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
-        .subject-btn .arrow { width: 34px; height: 34px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: bold; }
-        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
-        .timer { font-weight: 700; color: var(--danger); font-size: 0.95rem; }
+        .container { width: 100%; max-width: 540px; padding: 16px; }
+        .card { background: white; border-radius: 16px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); margin-bottom: 16px; }
+        .form-group { margin-bottom: 14px; text-align: left; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; }
+        .form-control { width: 100%; padding: 12px 14px; border: 2px solid #cbd5e1; border-radius: 10px; font-size: 1rem; outline: none; }
+        .form-control:focus { border-color: #2563eb; }
+        /* Real Button Styling */
+        button.subject-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 16px; background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 12px; margin-bottom: 12px; cursor: pointer; text-align: left; }
+        button.subject-btn:active { background: #dbeafe; border-color: #2563eb; }
+        .subject-btn .info h3 { font-size: 1rem; font-weight: 700; color: #0f172a; }
+        .subject-btn .info p { font-size: 0.8rem; color: #64748b; margin-top: 2px; }
+        .subject-btn .arrow { width: 32px; height: 32px; background: #2563eb; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .quiz-header { display: flex; justify-content: space-between; margin-bottom: 14px; font-weight: bold; }
         .progress-bar-wrap { width: 100%; height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 16px; }
-        .progress-bar { height: 100%; width: 2%; background: var(--primary); transition: width 0.3s ease; }
-        .q-text { font-size: 1.05rem; font-weight: 700; line-height: 1.5; color: var(--dark); margin-bottom: 18px; }
-        .options-list { display: flex; flex-direction: column; gap: 10px; }
-        .opt-btn { width: 100%; display: flex; align-items: center; padding: 12px 14px; background: white; border: 2px solid var(--border); border-radius: 12px; font-size: 0.95rem; font-weight: 600; color: var(--text-main); text-align: left; cursor: pointer; transition: 0.2s; }
-        .opt-btn .opt-badge { width: 28px; height: 28px; background: #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; margin-right: 12px; flex-shrink: 0; }
+        .progress-bar { height: 100%; width: 2%; background: #2563eb; }
+        .q-text { font-size: 1.05rem; font-weight: 700; line-height: 1.5; margin-bottom: 18px; }
+        .opt-btn { width: 100%; display: flex; align-items: center; padding: 12px 14px; background: white; border: 2px solid #cbd5e1; border-radius: 12px; font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; cursor: pointer; text-align: left; }
+        .opt-btn .opt-badge { width: 28px; height: 28px; background: #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; margin-right: 12px; }
         .opt-btn.correct { background: #dcfce7 !important; border-color: #22c55e !important; color: #166534 !important; }
         .opt-btn.correct .opt-badge { background: #22c55e; color: white; }
         .opt-btn.wrong { background: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
         .opt-btn.wrong .opt-badge { background: #ef4444; color: white; }
-        .scorecard { background: white; border: 3px solid var(--primary); border-radius: 16px; padding: 20px; text-align: center; }
-        .score-circle { width: 110px; height: 110px; border-radius: 50%; background: #eff6ff; border: 4px solid var(--primary); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 16px auto; }
-        .score-num { font-size: 2rem; font-weight: 800; color: var(--primary); line-height: 1; }
-        .score-total { font-size: 0.85rem; color: var(--text-muted); font-weight: 700; }
+        .scorecard { background: white; border: 3px solid #2563eb; border-radius: 16px; padding: 20px; text-align: center; }
+        .score-circle { width: 100px; height: 100px; border-radius: 50%; background: #eff6ff; border: 4px solid #2563eb; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 16px auto; font-size: 2rem; font-weight: 800; color: #2563eb; }
         .details-box { background: #f8fafc; border-radius: 10px; padding: 12px; margin: 16px 0; text-align: left; font-size: 0.9rem; }
-        .details-box p { margin-bottom: 6px; }
         .hidden { display: none !important; }
     </style>
 </head>
@@ -64,7 +45,7 @@
     </header>
 
     <div class="container">
-        <!-- SCREEN 1: LOGIN -->
+        <!-- LOGIN SCREEN -->
         <div id="loginScreen" class="card">
             <h2 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 14px; text-align: center;">विद्यार्थी विवरण (Student Info)</h2>
             <div class="form-group">
@@ -76,74 +57,68 @@
                 <input type="text" id="studentRoll" class="form-control" placeholder="उदा. 12">
             </div>
 
-            <p style="font-size: 0.85rem; font-weight: 700; margin: 18px 0 10px; color: var(--text-muted);">विषय चुनें (SELECT SUBJECT):</p>
+            <p style="font-size: 0.85rem; font-weight: 700; margin: 16px 0 10px; color: #64748b;">विषय चुनें (TAP TO START):</p>
 
-            <div class="subject-btn" onclick="startQuiz('physics')">
+            <button type="button" class="subject-btn" onclick="startQuiz('physics')">
                 <div class="info">
                     <h3>भौतिकी (Physics)</h3>
                     <p>अध्याय 3: धारा विद्युत • 50 प्रश्न</p>
                 </div>
                 <div class="arrow">→</div>
-            </div>
+            </button>
 
-            <div class="subject-btn" onclick="startQuiz('english')">
+            <button type="button" class="subject-btn" onclick="startQuiz('english')">
                 <div class="info">
                     <h3>English (100 Marks)</h3>
                     <p>Ch-3: A Pinch of Snuff • 50 Questions</p>
                 </div>
                 <div class="arrow">→</div>
-            </div>
+            </button>
 
-            <div class="subject-btn" onclick="startQuiz('math')">
+            <button type="button" class="subject-btn" onclick="startQuiz('math')">
                 <div class="info">
                     <h3>गणित (Mathematics)</h3>
                     <p>आव्यूह (Matrices) • 50 प्रश्न</p>
                 </div>
                 <div class="arrow">→</div>
-            </div>
+            </button>
 
-            <div class="subject-btn" onclick="startQuiz('chemistry')">
+            <button type="button" class="subject-btn" onclick="startQuiz('chemistry')">
                 <div class="info">
                     <h3>रसायन विज्ञान (Chemistry)</h3>
                     <p>अध्याय 3: वैद्युतरसायन • 50 प्रश्न</p>
                 </div>
                 <div class="arrow">→</div>
-            </div>
+            </button>
         </div>
 
-        <!-- SCREEN 2: QUIZ -->
+        <!-- QUIZ SCREEN -->
         <div id="quizScreen" class="card hidden">
             <div class="quiz-header">
-                <span id="qCountText" style="font-weight: 700; font-size: 0.9rem;">प्रश्न: 1 / 50</span>
-                <span id="timerText" class="timer">50:00</span>
+                <span id="qCountText">प्रश्न: 1 / 50</span>
+                <span id="timerText" style="color: #ef4444;">50:00</span>
             </div>
             <div class="progress-bar-wrap">
                 <div id="progressBar" class="progress-bar"></div>
             </div>
             <div id="qText" class="q-text"></div>
-            <div id="optionsList" class="options-list"></div>
+            <div id="optionsList"></div>
         </div>
 
-        <!-- SCREEN 3: RESULT -->
+        <!-- RESULT SCREEN -->
         <div id="resultScreen" class="hidden">
             <div class="scorecard">
-                <h3 style="font-size: 1.15rem; font-weight: 800; color: #1e3a8a;">SGS BHOJPUR, DUMRAON</h3>
-                <p style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">OFFICIAL RESULT SCORE CARD</p>
-                
-                <div class="score-circle">
-                    <span id="resScore" class="score-num">0</span>
-                    <span class="score-total">OUT OF 50</span>
-                </div>
-
+                <h3 style="color: #1e3a8a;">SGS BHOJPUR, DUMRAON</h3>
+                <p style="font-size: 0.8rem; color: #64748b; font-weight: bold;">OFFICIAL RESULT SCORE CARD</p>
+                <div class="score-circle" id="resScore">0</div>
                 <div class="details-box">
                     <p><strong>नाम:</strong> <span id="resName"></span></p>
                     <p><strong>रोल नंबर:</strong> <span id="resRoll"></span></p>
                     <p><strong>विषय:</strong> <span id="resSubject"></span></p>
                     <p><strong>तारीख:</strong> <span id="resDate"></span></p>
-                    <p><strong>प्रतिशत (Percentage):</strong> <span id="resPerc"></span>%</p>
+                    <p><strong>प्रतिशत:</strong> <span id="resPerc"></span>%</p>
                 </div>
-
-                <p style="font-size: 0.85rem; color: #059669; font-weight: 700; margin-top: 10px;">📸 इस स्क्रीनशॉट को सीधे सोनू सर को भेजें।</p>
+                <p style="color: #059669; font-weight: bold;">📸 इस स्क्रीनशॉट को सर को भेजें।</p>
             </div>
         </div>
     </div>
@@ -156,81 +131,114 @@
                 {q:"3. ओम के नियम में V/I नियतांक को कहते हैं", o:["प्रतिरोधकता", "प्रतिरोध", "चालकता", "धारिता"], a:1},
                 {q:"4. प्रतिरोधकता (ρ) का SI मात्रक है", o:["म्हो", "ओम-मीटर", "ओम/मीटर", "ओम"], a:1},
                 {q:"5. चालकता का SI मात्रक है", o:["सीमेन", "वोल्ट", "ओम-मीटर", "ओम"], a:0},
-                {q:"6. आयतन नियत रखकर तार की लंबाई दोगुनी कर दी जाए, तो प्रतिरोध हो जाएगा", o:["एक-चौथाई", "दोगुना", "चार गुना", "आधा"], a:2},
-                {q:"7. तार की त्रिज्या दोगुनी कर दी जाए (लंबाई समान), तो प्रतिरोध हो जाएगा", o:["आधा", "दोगुना", "एक-चौथाई", "चार गुना"], a:2},
-                {q:"8. 2Ω, 3Ω तथा 6Ω के प्रतिरोध श्रेणीक्रम में जुड़े हैं, तुल्य प्रतिरोध होगा", o:["36 Ω", "6 Ω", "11 Ω", "1 Ω"], a:2},
-                {q:"9. 12Ω, 6Ω तथा 4Ω के प्रतिरोध समान्तर क्रम में जुड़े हैं, तुल्य प्रतिरोध होगा", o:["2 Ω", "22 Ω", "6 Ω", "0.5 Ω"], a:0},
-                {q:"10. 5Ω के प्रतिरोध से 2 A धारा बह रही है, विभवांतर होगा", o:["2.5 V", "25 V", "10 V", "7 V"], a:2},
-                {q:"11. धातु में इलेक्ट्रॉनों के अपवाह वेग की कोटि लगभग होती है", o:["10^-10 m/s", "10^-4 m/s", "10^3 m/s", "10^8 m/s"], a:1},
-                {q:"12. धारा (I) तथा अपवाह वेग (vd) में सम्बन्ध है", o:["I = neA/vd", "I = neAvd", "I = nevd/A", "I = nAvd/e"], a:1},
-                {q:"13. ताप बढ़ाने पर धातु का प्रतिरोध", o:["पहले घटता फिर बढ़ता", "बढ़ता है", "अपरिवर्तित", "घटता है"], a:1},
-                {q:"14. प्रतिरोध के ताप गुणांक (α) का SI मात्रक है", o:["K", "Ω m", "Ω", "K^-1"], a:3},
-                {q:"15. ताप बढ़ाने पर अर्धचालक का प्रतिरोध", o:["शून्य", "बढ़ता है", "अपरिवर्तित", "घटता है"], a:3},
-                {q:"16. निम्न में कौन ओमीय चालक नहीं है?", o:["ताँबे का तार", "चाँदी का तार", "एल्युमिनियम का तार", "अर्धचालक डायोड"], a:3},
-                {q:"17. मानक प्रतिरोध बनाने में प्रयुक्त पदार्थ है", o:["ताँबा", "मैंगनिन", "लोहा", "चाँदी"], a:1},
-                {q:"18. हीटर का तार बनाया जाता है", o:["नाइक्रोम का", "टंगस्टन का", "ताँबे का", "चाँदी का"], a:0},
-                {q:"19. फ्यूज का तार बना होता है", o:["टंगस्टन का", "ताँबे का", "टिन व सीसे की मिश्रधातु का", "नाइक्रोम का"], a:2},
-                {q:"20. विद्युत शक्ति का SI मात्रक है", o:["किलोवाट-घंटा", "जूल", "वोल्ट", "वाट"], a:3},
-                {q:"21. 1 किलोवाट-घंटा (kWh) बराबर होता है", o:["3.6 × 10^6 J", "36 × 10^3 J", "3.6 × 10^3 J", "1000 J"], a:0},
-                {q:"22. 220 V, 100 W के बल्ब का प्रतिरोध होता है", o:["22 Ω", "48.4 Ω", "484 Ω", "2.2 Ω"], a:2},
-                {q:"23. 60 W का बल्ब 10 घंटे जलने पर कितनी यूनिट ऊर्जा खर्च करेगा?", o:["6 यूनिट", "0.6 यूनिट", "0.06 यूनिट", "60 यूनिट"], a:1},
-                {q:"24. जूल के नियमानुसार उत्पन्न ऊष्मा H =", o:["I^2 R t", "I R^2 t", "I^2 R / t", "I R t^2"], a:0},
-                {q:"25. 5Ω के प्रतिरोध में 2A धारा 10s तक प्रवाहित करने पर ऊष्मा होगी", o:["100 J", "50 J", "20 J", "200 J"], a:3},
-                {q:"26. सेल का विद्युत वाहक बल (emf) बराबर होता है", o:["आवेश के", "खुले परिपथ में टर्मिनल विभवांतर के", "बंद परिपथ विभवांतर के", "आंतरिक प्रतिरोध के"], a:1},
-                {q:"27. परिपथ में धारा I =", o:["E / (R+r)", "E / (R-r)", "E / R", "E (R+r)"], a:0},
-                {q:"28. धारा देते समय सेल का टर्मिनल विभवांतर V =", o:["Ir - E", "E - Ir", "E + Ir", "E / Ir"], a:1},
-                {q:"29. emf 2V, आंतरिक प्रतिरोध 1Ω का सेल 3Ω से जुड़ा है, धारा होगी", o:["0.5 A", "0.67 A", "1 A", "2 A"], a:0},
-                {q:"30. आवेशित होते समय सेल का टर्मिनल विभवांतर emf से", o:["अधिक होता है", "शून्य होता है", "बराबर होता है", "कम होता है"], a:0},
-                {q:"31. n सर्वसम सेल श्रेणीक्रम में हों, तो कुल emf होगा", o:["nE", "E/n", "E", "n^2 E"], a:0},
-                {q:"32. n सर्वसम सेल समान्तर क्रम में हों, तो तुल्य आंतरिक प्रतिरोध होगा", o:["n^2 r", "r", "r / n", "nr"], a:2},
-                {q:"33. किरचॉफ का प्रथम नियम (संधि नियम) आधारित है", o:["द्रव्यमान पर", "ऊर्जा पर", "आवेश संरक्षण पर", "संवेग पर"], a:2},
-                {q:"34. किरचॉफ का द्वितीय नियम (लूप नियम) आधारित है", o:["ऊर्जा संरक्षण पर", "आवेश पर", "कोणीय संवेग पर", "संवेग पर"], a:0},
-                {q:"35. व्हीटस्टोन सेतु की संतुलन अवस्था शर्त है", o:["P/Q = R/S", "P/R = S/Q", "P Q = R S", "P + Q = R + S"], a:0},
-                {q:"36. मीटर सेतु कार्य करता है", o:["जूल नियम पर", "फैराडे नियम पर", "व्हीटस्टोन सेतु के सिद्धांत पर", "विभवमापी पर"], a:2},
-                {q:"37. विभवमापी का सिद्धांत: विभवपात तार की लंबाई के", o:["व्युत्क्रमानुपाती होता है", "वर्ग के समानुपाती", "निर्भर नहीं करता", "समानुपाती होता है"], a:3},
-                {q:"38. emf मापने में विभवमापी वोल्टमीटर से श्रेष्ठ है क्योंकि", o:["छोटा होता है", "अधिक धारा लेता है", "सस्ता होता है", "सेल से धारा नहीं लेता"], a:3},
-                {q:"39. विभवमापी द्वारा emf तुलना में E1/E2 =", o:["l1 × l2", "l2 / l1", "l1 / l2", "l1 - l2"], a:2},
-                {q:"40. आदर्श वोल्टमीटर का प्रतिरोध होता है", o:["100 Ω", "1 Ω", "शून्य", "अनन्त"], a:3},
-                {q:"41. आदर्श अमीटर का प्रतिरोध होता है", o:["1 Ω", "100 Ω", "अनन्त", "शून्य"], a:3},
-                {q:"42. अमीटर को परिपथ में जोड़ा जाता है", o:["समान्तर क्रम में", "श्रेणीक्रम में", "दोनों में", "किसी में नहीं"], a:1},
-                {q:"43. वोल्टमीटर को परिपथ में जोड़ा जाता है", o:["श्रेणीक्रम में", "समान्तर क्रम में", "दोनों में", "किसी में नहीं"], a:1},
-                {q:"44. गैल्वेनोमीटर को अमीटर में बदलने के लिए जोड़ते हैं", o:["कम प्रतिरोध श्रेणी में", "कम प्रतिरोध समान्तर में", "उच्च प्रतिरोध श्रेणी में", "उच्च प्रतिरोध समान्तर में"], a:1},
-                {q:"45. गैल्वेनोमीटर को वोल्टमीटर में बदलने के लिए जोड़ते हैं", o:["कम प्रतिरोध श्रेणी में", "उच्च प्रतिरोध श्रेणीक्रम में", "कम प्रतिरोध समान्तर में", "उच्च प्रतिरोध समान्तर में"], a:1},
-                {q:"46. कार्बन प्रतिरोध कोडिंग में लाल रंग का मान होता है", o:["2", "3", "1", "5"], a:0},
-                {q:"47. श्रेणीक्रम में कौन-सी राशि सभी में समान रहती है?", o:["विभवांतर", "ऊष्मा", "धारा", "शक्ति"], a:2},
-                {q:"48. धारा घनत्व (J) का SI मात्रक है", o:["A/m", "A m", "A m^2", "A/m^2"], a:3},
-                {q:"49. इलेक्ट्रॉन गतिशीलता का SI मात्रक है", o:["m^2 V^-1 s^-1", "m^2 V s^-1", "m V^-1 s^-1", "V m^-1"], a:0},
-                {q:"50. श्रांतिकाल बढ़ने पर चालक की प्रतिरोधकता", o:["बढ़ती है", "अपरिवर्तित", "दोगुनी", "घटती है"], a:3}
+                {q:"6. आयतन नियत रखकर लंबाई दोगुनी करने पर प्रतिरोध होगा", o:["एक-चौथाई", "दोगुना", "चार गुना", "आधा"], a:2},
+                {q:"7. त्रिज्या दोगुनी करने पर प्रतिरोध होगा", o:["आधा", "दोगुना", "एक-चौथाई", "चार गुना"], a:2},
+                {q:"8. 2Ω, 3Ω तथा 6Ω श्रेणीक्रम में हैं, तुल्य प्रतिरोध:", o:["36 Ω", "6 Ω", "11 Ω", "1 Ω"], a:2},
+                {q:"9. 12Ω, 6Ω तथा 4Ω समान्तर क्रम में हैं, तुल्य प्रतिरोध:", o:["2 Ω", "22 Ω", "6 Ω", "0.5 Ω"], a:0},
+                {q:"10. 5Ω प्रतिरोध में 2A धारा पर विभवांतर होगा:", o:["2.5 V", "25 V", "10 V", "7 V"], a:2},
+                {q:"11. अपवाह वेग (vd) की कोटि होती है:", o:["10^-10 m/s", "10^-4 m/s", "10^3 m/s", "10^8 m/s"], a:1},
+                {q:"12. I तथा vd में सम्बन्ध है:", o:["I = neA/vd", "I = neAvd", "I = nevd/A", "I = nAvd/e"], a:1},
+                {q:"13. ताप बढ़ाने पर धातु का प्रतिरोध:", o:["घटता है", "बढ़ता है", "अपरिवर्तित", "शून्य"], a:1},
+                {q:"14. ताप गुणांक (α) का मात्रक है:", o:["K", "Ω m", "Ω", "K^-1"], a:3},
+                {q:"15. ताप बढ़ाने पर अर्धचालक का प्रतिरोध:", o:["शून्य", "बढ़ता है", "अपरिवर्तित", "घटता है"], a:3},
+                {q:"16. निम्न में कौन ओमीय चालक नहीं है?", o:["ताँबा", "चाँदी", "एल्युमिनियम", "अर्धचालक डायोड"], a:3},
+                {q:"17. मानक प्रतिरोध बनाने में प्रयुक्त पदार्थ:", o:["ताँबा", "मैंगनिन", "लोहा", "चाँदी"], a:1},
+                {q:"18. हीटर का तार बनाया जाता है:", o:["नाइक्रोम का", "टंगस्टन का", "ताँबे का", "चाँदी का"], a:0},
+                {q:"19. फ्यूज का तार बना होता है:", o:["टंगस्टन", "ताँबा", "टिन व सीसे की मिश्रधातु", "नाइक्रोम"], a:2},
+                {q:"20. विद्युत शक्ति का मात्रक है:", o:["kWh", "जूल", "वोल्ट", "वाट"], a:3},
+                {q:"21. 1 kWh बराबर होता है:", o:["3.6 × 10^6 J", "36 × 10^3 J", "3.6 × 10^3 J", "1000 J"], a:0},
+                {q:"22. 220V, 100W बल्ब का प्रतिरोध:", o:["22 Ω", "48.4 Ω", "484 Ω", "2.2 Ω"], a:2},
+                {q:"23. 60W बल्ब 10 घंटे में कितनी यूनिट खर्च करेगा?", o:["6", "0.6 यूनिट", "0.06", "60"], a:1},
+                {q:"24. जूल ऊष्मीय नियमानुसार H =", o:["I^2 R t", "I R^2 t", "I^2 R / t", "I R t^2"], a:0},
+                {q:"25. 5Ω में 2A धारा 10s तक बहने पर ऊष्मा:", o:["100 J", "50 J", "20 J", "200 J"], a:3},
+                {q:"26. सेल का emf बराबर होता है:", o:["आवेश", "खुले परिपथ में विभवांतर", "बंद परिपथ विभवांतर", "r"], a:1},
+                {q:"27. परिपथ धारा I =", o:["E / (R+r)", "E / (R-r)", "E / R", "E(R+r)"], a:0},
+                {q:"28. धारा देते समय V =", o:["Ir - E", "E - Ir", "E + Ir", "E/Ir"], a:1},
+                {q:"29. E=2V, r=1Ω, R=3Ω, तो धारा I:", o:["0.5 A", "0.67 A", "1 A", "2 A"], a:0},
+                {q:"30. आवेशित होते समय V का मान emf से:", o:["अधिक होता है", "शून्य", "बराबर", "कम"], a:0},
+                {q:"31. n सेल श्रेणीक्रम में कुल emf:", o:["nE", "E/n", "E", "n^2 E"], a:0},
+                {q:"32. n सेल समान्तर में तुल्य आंतरिक प्रतिरोध:", o:["n^2 r", "r", "r / n", "nr"], a:2},
+                {q:"33. किरचॉफ का प्रथम नियम आधारित है:", o:["द्रव्यमान", "ऊर्जा", "आवेश संरक्षण", "संवेग"], a:2},
+                {q:"34. किरचॉफ का द्वितीय नियम आधारित है:", o:["ऊर्जा संरक्षण", "आवेश", "कोणीय संवेग", "संवेग"], a:0},
+                {q:"35. व्हीटस्टोन सेतु संतुलन शर्त:", o:["P/Q = R/S", "P/R = S/Q", "PQ = RS", "P+Q=R+S"], a:0},
+                {q:"36. मीटर सेतु कार्य करता है:", o:["जूल नियम", "फैराडे नियम", "व्हीटस्टोन सेतु", "विभवमापी"], a:2},
+                {q:"37. विभवमापी में विभवपात लंबाई के:", o:["व्युत्क्रमानुपाती", "वर्ग समानुपाती", "निर्भर नहीं", "समानुपाती"], a:3},
+                {q:"38. विभवमापी वोल्टमीटर से श्रेष्ठ है क्योंकि:", o:["छोटा है", "अधिक धारा लेता है", "सस्ता है", "धारा नहीं लेता"], a:3},
+                {q:"39. E1/E2 बराबर होता है:", o:["l1 × l2", "l2 / l1", "l1 / l2", "l1 - l2"], a:2},
+                {q:"40. आदर्श वोल्टमीटर का प्रतिरोध:", o:["100 Ω", "1 Ω", "शून्य", "अनन्त"], a:3},
+                {q:"41. आदर्श अमीटर का प्रतिरोध:", o:["1 Ω", "100 Ω", "अनन्त", "शून्य"], a:3},
+                {q:"42. अमीटर को परिपथ में जोड़ते हैं:", o:["समान्तर", "श्रेणीक्रम", "दोनों", "किसी में नहीं"], a:1},
+                {q:"43. वोल्टमीटर को परिपथ में जोड़ते हैं:", o:["श्रेणीक्रम", "समान्तर क्रम", "दोनों", "किसी में नहीं"], a:1},
+                {q:"44. गैल्वेनोमीटर को अमीटर में बदलने हेतु जोड़ते हैं:", o:["कम श्रेणी", "कम प्रतिरोध समान्तर", "उच्च श्रेणी", "उच्च समान्तर"], a:1},
+                {q:"45. गैल्वेनोमीटर को वोल्टमीटर में बदलने हेतु:", o:["कम श्रेणी", "उच्च प्रतिरोध श्रेणीक्रम", "कम समान्तर", "उच्च समान्तर"], a:1},
+                {q:"46. कार्बन प्रतिरोध में लाल रंग का मान:", o:["2", "3", "1", "5"], a:0},
+                {q:"47. श्रेणीक्रम में समान रहने वाली राशि:", o:["विभवांतर", "ऊष्मा", "धारा", "शक्ति"], a:2},
+                {q:"48. धारा घनत्व (J) का मात्रक:", o:["A/m", "A m", "A m^2", "A/m^2"], a:3},
+                {q:"49. गतिशीलता (μ) का मात्रक:", o:["m^2 V^-1 s^-1", "m^2 V s^-1", "m V^-1 s^-1", "V m^-1"], a:0},
+                {q:"50. श्रांतिकाल बढ़ने पर चालक की प्रतिरोधकता:", o:["बढ़ती है", "अपरिवर्तित", "दोगुनी", "घटती है"], a:3}
             ],
             english: [
-                {q:"1. 'A Pinch of Snuff' was written by", o:["Ruskin Bond", "Manohar Malgonkar", "R. K. Narayan", "Khushwant Singh"], a:1},
-                {q:"2. 'A Pinch of Snuff' is a", o:["comic (humorous) story", "tragic play", "biography", "travel essay"], a:0},
-                {q:"3. The story is taken from", o:["Flamingo", "Malgudi Days", "Vistas", "Contemporary Indian Short Stories in English"], a:3},
-                {q:"4. Nanukaka is the narrator's", o:["paternal uncle", "elder brother", "maternal uncle", "grandfather"], a:2},
-                {q:"5. The narrator is an Under-Secretary", o:["on leave", "on probation", "retired", "permanent"], a:1},
-                {q:"6. Nanukaka came to Delhi to see", o:["a Minister", "a doctor", "a Maharaja", "a Judge"], a:0},
-                {q:"7. Nanukaka said he could stay in Delhi for", o:["a month", "one week", "one year", "two or three days"], a:3},
-                {q:"8. The narrator suggested sending a wire saying he was", o:["ill", "dead", "transferred", "on a tour"], a:2},
-                {q:"9. According to mother, if Nanukaka wanted to see a Minister, he would", o:["give up", "manage to see him", "fail", "take weeks"], a:1},
-                {q:"10. The narrator regarded Ministers as being", o:["two steps higher than God", "equal to Secretaries", "below Secretaries", "like ordinary men"], a:0},
-                {q:"11. Nanukaka wore an old-fashioned knee-length", o:["white kurta", "blue suit", "brown shirt", "black coat"], a:3},
-                {q:"12. Nanukaka's pugree was made of", o:["white cotton", "blue wool", "red silk", "yellow khadi"], a:2},
-                {q:"13. Nanukaka was a", o:["Marwari trader", "Deccani Brahmin", "Punjabi Sikh", "Bengali Babu"], a:1},
-                {q:"14. At the station, Nanukaka handed the narrator a basket containing", o:["a kitten", "fruits", "sweets", "a puppy"], a:0},
-                {q:"15. While running out of the station, the narrator bumped into", o:["a ticket inspector", "a Sikh bridegroom", "a tonga-wala", "an enormous Marwari woman in a burka"], a:3},
-                {q:"16. Nanukaka travelled in a second class carriage on a", o:["first class ticket", "free pass", "third class ticket", "reserved ticket"], a:2},
-                {q:"17. The kitten travelled", o:["on a half ticket", "free", "on a full ticket", "in the guard's van"], a:1},
-                {q:"18. The narrator secretly hoped that the kitten was", o:["dead", "happy", "hungry", "playful"], a:0},
-                {q:"19. When the narrator said he could not arrange an interview, Nanukaka", o:["shouted at him", "left the car", "wept loudly", "took a pinch of snuff and closed his eyes"], a:3},
-                {q:"20. The mother had put Nanukaka in narrator's", o:["office", "drawing room", "bedroom", "garage"], a:2},
-                {q:"21. The narrator had to sleep on a charpoy in the", o:["kitchen", "back verandah", "garden", "car"], a:1},
-                {q:"22. The narrator took ___ day(s) leave from office.", o:["two", "one", "five", "ten"], a:0},
-                {q:"23. Nanukaka went to see the Minister at", o:["Lala's house", "Parliament Hall", "the railway station", "the North Block"], a:3},
-                {q:"24. Nanukaka finally got an appointment from a", o:["Minister", "Prime Minister", "Deputy-Secretary", "Chaprasi"], a:2},
-                {q:"25. The appointment was given for", o:["the same day", "three days later", "next month", "next year"], a:1},
-                {q:"26. When angry, Nanukaka used", o:["Marathi swearwords", "Hindi poems", "English idioms", "Sanskrit shlokas"], a:0},
-                {q:"27. The yellow sports car was driven by", o:["Hajrat Barkat Ali", "Lala Sohanlal", "the Minister", "Ratiram"], a:3},
-                {q:"28. Ratiram was the son of", o:["Hajrat Barkat Ali", "the Welfare Minister", "Sohanlal Ratiram", "Nanukaka"], a:2},
-                {q:"29. Sohanlal Ratiram was the", o:["Ambassador", "Party Boss in Delhi", "Zamindar", "Secretary"], a:1},
-                {q:"30. Ratiram was expected to go as Trade Commissioner to", o:["Hajrat Barkat Ali", "Beirut's King", "Geneva", "Prince of Ninnore"], a:0},
-                {q:"31. 'Amicably' me
+                {q:"1. 'A Pinch of Snuff' written by:", o:["Ruskin Bond", "Manohar Malgonkar", "R.K. Narayan", "Khushwant Singh"], a:1},
+                {q:"2. It is a:", o:["comic story", "tragic play", "biography", "travel essay"], a:0},
+                {q:"3. Taken from:", o:["Flamingo", "Malgudi Days", "Vistas", "Contemporary Indian Short Stories"], a:3},
+                {q:"4. Nanukaka is narrator's:", o:["paternal uncle", "brother", "maternal uncle", "grandfather"], a:2},
+                {q:"5. Narrator is Under-Secretary on:", o:["leave", "probation", "retired", "permanent"], a:1},
+                {q:"6. Nanukaka came to Delhi to see:", o:["a Minister", "a doctor", "a Maharaja", "a Judge"], a:0},
+                {q:"7. Nanukaka stay duration:", o:["a month", "one week", "one year", "two or three days"], a:3},
+                {q:"8. Narrator suggested wire saying he was:", o:["ill", "dead", "transferred", "on tour"], a:2},
+                {q:"9. Mother said Nanukaka would:", o:["give up", "manage to see him", "fail", "take weeks"], a:1},
+                {q:"10. Ministers regarded as:", o:["two steps higher than God", "equal to Secretaries", "below", "ordinary"], a:0},
+                {q:"11. Nanukaka wore knee-length:", o:["kurta", "suit", "shirt", "black coat"], a:3},
+                {q:"12. Pugree was made of:", o:["cotton", "wool", "red silk", "khadi"], a:2},
+                {q:"13. Nanukaka was a:", o:["trader", "Deccani Brahmin", "Sikh", "Bengali"], a:1},
+                {q:"14. Basket contained:", o:["a kitten", "fruits", "sweets", "puppy"], a:0},
+                {q:"15. Narrator bumped into:", o:["TTE", "bridegroom", "tonga-wala", "Marwari woman in burka"], a:3},
+                {q:"16. Travelled in 2nd class on:", o:["1st ticket", "free pass", "3rd class ticket", "reserved"], a:2},
+                {q:"17. Kitten travelled:", o:["half ticket", "free", "full ticket", "guard van"], a:1},
+                {q:"18. Narrator hoped kitten was:", o:["dead", "happy", "hungry", "playful"], a:0},
+                {q:"19. Nanukaka's reaction:", o:["shouted", "left car", "wept", "took pinch of snuff & closed eyes"], a:3},
+                {q:"20. Nanukaka stayed in narrator's:", o:["office", "drawing room", "bedroom", "garage"], a:2},
+                {q:"21. Narrator slept in:", o:["kitchen", "back verandah", "garden", "car"], a:1},
+                {q:"22. Narrator took leave for:", o:["two days", "one day", "five days", "ten days"], a:0},
+                {q:"23. Minister's office at:", o:["Lala house", "Parliament", "station", "North Block"], a:3},
+                {q:"24. Appointment from:", o:["Minister", "PM", "Deputy-Secretary", "Chaprasi"], a:2},
+                {q:"25. Appointment given for:", o:["same day", "three days later", "next month", "next year"], a:1},
+                {q:"26. When angry, used:", o:["Marathi swearwords", "Hindi", "English", "Sanskrit"], a:0},
+                {q:"27. Yellow car driven by:", o:["Barkat Ali", "Sohanlal", "Minister", "Ratiram"], a:3},
+                {q:"28. Ratiram son of:", o:["Barkat Ali", "Welfare Minister", "Sohanlal Ratiram", "Nanukaka"], a:2},
+                {q:"29. Sohanlal was:", o:["Ambassador", "Party Boss in Delhi", "Zamindar", "Secretary"], a:1},
+                {q:"30. Trade Commissioner to:", o:["Hajrat Barkat Ali", "Beirut", "Geneva", "Ninnore"], a:0},
+                {q:"31. 'Amicably' means:", o:["angrily", "secretly", "loudly", "in a friendly manner"], a:3},
+                {q:"32. 'Haughty' means:", o:["humble", "friendly", "proud and arrogant", "weak"], a:2},
+                {q:"33. 'Fawning' means:", o:["anger", "excessive flattery", "fear", "sleep"], a:1},
+                {q:"34. Narrator wore Jodhpuri coat and:", o:["orange turban", "hat", "tie", "cap"], a:0},
+                {q:"35. Narrator acted as:", o:["enemy", "driver", "secretary", "A.D.C."], a:3},
+                {q:"36. Came for:", o:["wedding", "budget", "Zamindars' Convention", "fair"], a:2},
+                {q:"37. Claimed Sunday was in:", o:["Washington", "Beirut", "Bombay", "London"], a:1},
+                {q:"38. Sound stopped was of:", o:["hookah", "radio", "telephone", "clock"], a:0},
+                {q:"39. Barkat Ali was his:", o:["enemy", "servant", "brother-in-law", "school friend"], a:3},
+                {q:"40. Ambassador mind:", o:["pleased", "changed", "poisoned against son", "closed"], a:2},
+                {q:"41. Minister refused marriage to:", o:["Zamindar", "Lalaji's son", "Secretary", "Nanukaka son"], a:1},
+                {q:"42. Wanted daughter to marry:", o:["Prince of Ninnore", "chaprasi", "Zamindar", "Deputy"], a:0},
+                {q:"43. Needed car with:", o:["police", "cart", "taxi driver", "uniformed chauffeur"], a:3},
+                {q:"44. Bearer cheque of:", o:["100", "10,000", "1,000 rupees", "1 lakh"], a:2},
+                {q:"45. Cheque coat given to:", o:["driver", "dhobi", "secretary", "tailor"], a:1},
+                {q:"46. Dhobi rewarded with:", o:["two-rupee note", "gold coin", "100-note", "coat"], a:0},
+                {q:"47. Described himself as:", o:["Zamindar", "Uncle", "Friend", "Astrologer to Maharaja of Ninnore"], a:3},
+                {q:"48. Palace of:", o:["Ninnore", "Barkat Ali", "Maharaja Sutkatta", "Sohanlal"], a:2},
+                {q:"49. Narrator wished to be:", o:["present", "far out of range", "giving speech", "in car"], a:1},
+                {q:"50. Main quality:", o:["clever bluffing skill", "honesty", "shyness", "laziness"], a:0}
+            ],
+            math: [
+                {q:"1. |adj A| (2×2 आव्यूह) =", o:["2|A|", "|A|", "|A|^2", "|A|^3"], a:1},
+                {q:"2. det(A^-1) =", o:["det(A)", "1 / det(A)", "1", "0"], a:1},
+                {q:"3. |adj A| (3×3 आव्यूह) =", o:["|A|", "|A|^2", "|A|^3", "3|A|"], a:1},
+                {q:"4. [1 2] × [[1],[2]] =", o:["[5]", "[[5,0],[0,5]]", "[14]", "कोई नहीं"], a:0},
+                {q:"5. A × I =", o:["2A", "A", "I", "शून्य"], a:1},
+                {q:"6. [3 4 5] + [1 2 1] =", o:["[4 6 6]", "[[4],[6],[6]]", "[4 6 4]", "[6 4 6]"], a:0},
+                {q:"7. [[1,2],[-1,3]]' =", o:["[[-1,2],[1,3]]", "[[1,-1],[2,3]]", "[[1,1],[2,3]]", "[[-1,1],[2,3]]"], a:1},
+                {q:"8. यदि A व्युत्क्रमणीय है तो:", o:["A+A^-1=I", "AA^-1=I", "A-A^-1=I", "2I"], a:1},
+                {q:"9. सममित आव्यूह की पहचान:", o:["विषम सममित", "सममित आव्यूह", "एकांक", "कोई नहीं"], a:1},
+                {q:"10. 4a = 16 ⇒ a =", o:["1", "4", "16", "कोई नहीं"], a:1},
+                {q:"11. I + [[0,1],[1,0]] =", o:["[[2,0],[0,2]]", "[[0,2],[2,0]]", "[[2,2],[2,2]]", "[[1,1],[1,1]]"], a:3},
+                {q:"12. I आव्यूह का व्युत्क्रम:", o:["अस्तित्व है", "|A|=0", "अस्तित्व नहीं", "कोई नहीं"], a:0}
