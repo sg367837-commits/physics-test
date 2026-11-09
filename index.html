@@ -1,328 +1,236 @@
-```html
 <!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGS Bhojpur - Class 12th Objective Test</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-
+    <title>SGS Bhojpur - VVI Objective Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Hind', 'Poppins', sans-serif;
-            -webkit-tap-highlight-color: transparent;
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #059669;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --danger: #ef4444;
+            --radius: 16px;
         }
-        .font-mono-num {
-            font-family: 'Space Grotesk', monospace;
-        }
-        /* Matrix grid layout styling */
-        .matrix-bracket {
-            display: inline-flex;
-            align-items: center;
-            border-left: 2px solid currentColor;
-            border-right: 2px solid currentColor;
-            border-radius: 4px;
-            padding: 2px 6px;
-            margin: 0 3px;
-            position: relative;
-            vertical-align: middle;
-        }
-        .matrix-bracket::before, .matrix-bracket::after {
-            content: "";
-            position: absolute;
-            left: -2px;
-            right: -2px;
-            height: 3px;
-            border-left: 2px solid currentColor;
-            border-right: 2px solid currentColor;
-        }
-        .matrix-bracket::before { top: 0; border-top: 2px solid currentColor; }
-        .matrix-bracket::after { bottom: 0; border-bottom: 2px solid currentColor; }
-        
-        .det-bracket {
-            display: inline-flex;
-            align-items: center;
-            border-left: 2px solid currentColor;
-            border-right: 2px solid currentColor;
-            padding: 2px 6px;
-            margin: 0 3px;
-            vertical-align: middle;
-        }
-
-        @media print {
-            .no-print { display: none !important; }
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background: #f1f5f9; color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding-bottom: 30px; }
+        header { width: 100%; background: linear-gradient(135deg, #1e3a8a, #2563eb); color: white; padding: 18px 20px; text-align: center; box-shadow: 0 4px 15px rgba(37,99,235,0.2); }
+        header h1 { font-size: 1.25rem; font-weight: 800; }
+        header p { font-size: 0.85rem; opacity: 0.9; margin-top: 3px; }
+        .container { width: 100%; max-width: 580px; padding: 16px; }
+        .card { background: white; border-radius: var(--radius); padding: 22px; box-shadow: 0 8px 25px rgba(0,0,0,0.06); border: 1px solid var(--border); margin-bottom: 16px; }
+        .form-group { margin-bottom: 16px; text-align: left; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: var(--text-main); }
+        .form-control { width: 100%; padding: 12px 14px; border: 2px solid var(--border); border-radius: 10px; font-size: 0.95rem; outline: none; transition: 0.2s; }
+        .form-control:focus { border-color: var(--primary); }
+        .subject-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 16px; background: #f8fafc; border: 2px solid var(--border); border-radius: 12px; margin-bottom: 12px; cursor: pointer; text-align: left; transition: all 0.2s ease; }
+        .subject-btn:active { transform: scale(0.98); background: #eff6ff; border-color: var(--primary); }
+        .subject-btn .info h3 { font-size: 1rem; font-weight: 700; color: var(--dark); }
+        .subject-btn .info p { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+        .subject-btn .arrow { width: 34px; height: 34px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: bold; }
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+        .timer { font-weight: 700; color: var(--danger); font-size: 0.95rem; }
+        .progress-bar-wrap { width: 100%; height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 16px; }
+        .progress-bar { height: 100%; width: 2%; background: var(--primary); transition: width 0.3s ease; }
+        .q-text { font-size: 1.05rem; font-weight: 700; line-height: 1.5; color: var(--dark); margin-bottom: 18px; }
+        .options-list { display: flex; flex-direction: column; gap: 10px; }
+        .opt-btn { width: 100%; display: flex; align-items: center; padding: 12px 14px; background: white; border: 2px solid var(--border); border-radius: 12px; font-size: 0.95rem; font-weight: 600; color: var(--text-main); text-align: left; cursor: pointer; transition: 0.2s; }
+        .opt-btn .opt-badge { width: 28px; height: 28px; background: #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; margin-right: 12px; flex-shrink: 0; }
+        .opt-btn.correct { background: #dcfce7 !important; border-color: #22c55e !important; color: #166534 !important; }
+        .opt-btn.correct .opt-badge { background: #22c55e; color: white; }
+        .opt-btn.wrong { background: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
+        .opt-btn.wrong .opt-badge { background: #ef4444; color: white; }
+        .scorecard { background: white; border: 3px solid var(--primary); border-radius: 16px; padding: 20px; text-align: center; }
+        .score-circle { width: 110px; height: 110px; border-radius: 50%; background: #eff6ff; border: 4px solid var(--primary); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 16px auto; }
+        .score-num { font-size: 2rem; font-weight: 800; color: var(--primary); line-height: 1; }
+        .score-total { font-size: 0.85rem; color: var(--text-muted); font-weight: 700; }
+        .details-box { background: #f8fafc; border-radius: 10px; padding: 12px; margin: 16px 0; text-align: left; font-size: 0.9rem; }
+        .details-box p { margin-bottom: 6px; }
+        .hidden { display: none !important; }
     </style>
 </head>
-<body class="bg-slate-100 min-h-screen text-slate-800 flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+<body>
 
-    <!-- Header Navigation -->
-    <header class="bg-gradient-to-r from-indigo-700 via-blue-700 to-indigo-800 text-white shadow-md sticky top-0 z-40">
-        <div class="max-w-xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center space-x-2.5">
-                <div class="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center font-bold text-lg border border-white/30 text-yellow-300">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
-                <div>
-                    <h1 class="text-sm sm:text-base font-bold tracking-tight leading-tight">SGS BHOJPUR, DUMRAON</h1>
-                    <p class="text-xs text-blue-100">Best Institute of Science • Mr. Sonu Sir</p>
-                </div>
-            </div>
-            <div id="headerTimer" class="hidden items-center space-x-1.5 bg-black/20 px-3 py-1 rounded-full text-xs font-mono font-bold text-emerald-300 border border-white/10">
-                <i class="fa-regular fa-clock"></i>
-                <span id="timerDisplay">50:00</span>
-            </div>
-        </div>
+    <header>
+        <h1>SGS BHOJPUR, DUMRAON</h1>
+        <p>Best Institute of Science • Mr. Sonu Sir</p>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="flex-grow max-w-xl w-full mx-auto p-4 flex flex-col justify-center">
-
-        <!-- ================= SCREEN 1: DETAILS & SUBJECT SELECTION ================= -->
-        <section id="screenEntry" class="space-y-4">
-            
-            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
-                <div class="inline-block px-3 py-0.5 rounded-full bg-blue-50 text-blue-700 font-bold text-xs uppercase tracking-wider mb-2">
-                    Class 12th VVI Objective Test
-                </div>
-                <h2 class="text-xl font-bold text-slate-800">विद्यार्थी विवरण (Student Info)</h2>
-                <p class="text-xs text-slate-500 mt-1">
-                    टेस्ट शुरू करने से पहले अपना नाम और रोल नंबर भरें, ताकि रिजल्ट कार्ड में आपका नाम आ सके।
-                </p>
-
-                <!-- Input Form -->
-                <div class="mt-4 space-y-3">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">विद्यार्थी का नाम (Full Name) *</label>
-                        <div class="relative">
-                            <i class="fa-regular fa-user absolute left-3.5 top-3 text-slate-400 text-sm"></i>
-                            <input type="text" id="studentNameInput" placeholder="उदा. अमन कुमार" class="w-full pl-10 pr-3 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50 focus:bg-white font-medium transition">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">रोल नंबर (Roll No.) *</label>
-                        <div class="relative">
-                            <i class="fa-solid fa-id-badge absolute left-3.5 top-3 text-slate-400 text-sm"></i>
-                            <input type="number" id="studentRollInput" placeholder="उदा. 12045" class="w-full pl-10 pr-3 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50 focus:bg-white font-medium transition">
-                        </div>
-                    </div>
-                </div>
+    <div class="container">
+        <!-- SCREEN 1: LOGIN -->
+        <div id="loginScreen" class="card">
+            <h2 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 14px; text-align: center;">विद्यार्थी विवरण (Student Info)</h2>
+            <div class="form-group">
+                <label>विद्यार्थी का नाम (FULL NAME) *</label>
+                <input type="text" id="studentName" class="form-control" placeholder="उदा. Rahul Kumar">
+            </div>
+            <div class="form-group">
+                <label>रोल नंबर (ROLL NO.) *</label>
+                <input type="text" id="studentRoll" class="form-control" placeholder="उदा. 12">
             </div>
 
-            <!-- Choose Subject -->
-            <div class="space-y-3">
-                <h3 class="text-sm font-bold text-slate-700 uppercase tracking-wider px-1">विषय चुनें (Select Subject):</h3>
+            <p style="font-size: 0.85rem; font-weight: 700; margin: 18px 0 10px; color: var(--text-muted);">विषय चुनें (SELECT SUBJECT):</p>
 
-                <!-- Subject 1: Math (Matrices) -->
-                <div onclick="prepareAndStartQuiz('math')" class="cursor-pointer bg-white rounded-2xl p-4 shadow-sm border-2 border-transparent hover:border-indigo-600 transition active:scale-[0.98] flex items-center justify-between group">
-                    <div class="flex items-center space-x-3.5">
-                        <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl font-bold group-hover:bg-indigo-600 group-hover:text-white transition">
-                            <i class="fa-solid fa-calculator"></i>
-                        </div>
-                        <div>
-                            <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-800">गणित (Maths)</span>
-                            <h4 class="text-base font-bold text-slate-800 mt-0.5">आव्यूह (Matrices) Test</h4>
-                            <p class="text-xs text-slate-500">50 महत्वपूर्ण वस्तुनिष्ठ प्रश्न • 50 मिनट</p>
-                        </div>
-                    </div>
-                    <div class="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-indigo-600 group-hover:text-white flex items-center justify-center text-slate-400 transition">
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
+            <div class="subject-btn" onclick="startQuiz('physics')">
+                <div class="info">
+                    <h3>भौतिकी (Physics)</h3>
+                    <p>अध्याय 3: धारा विद्युत • 50 प्रश्न</p>
                 </div>
-
-                <!-- Subject 2: Chemistry (Electrochemistry) -->
-                <div onclick="prepareAndStartQuiz('chem')" class="cursor-pointer bg-white rounded-2xl p-4 shadow-sm border-2 border-transparent hover:border-emerald-600 transition active:scale-[0.98] flex items-center justify-between group">
-                    <div class="flex items-center space-x-3.5">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold group-hover:bg-emerald-600 group-hover:text-white transition">
-                            <i class="fa-solid fa-flask-vial"></i>
-                        </div>
-                        <div>
-                            <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">रसायन विज्ञान (Chemistry)</span>
-                            <h4 class="text-base font-bold text-slate-800 mt-0.5">अध्याय 3: वैद्युतरसायन Test</h4>
-                            <p class="text-xs text-slate-500">50 महत्वपूर्ण वस्तुनिष्ठ प्रश्न • 50 मिनट</p>
-                        </div>
-                    </div>
-                    <div class="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-emerald-600 group-hover:text-white flex items-center justify-center text-slate-400 transition">
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
+                <div class="arrow">→</div>
             </div>
 
-            <!-- Instruction Box -->
-            <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-start space-x-2.5">
-                <i class="fa-solid fa-circle-info text-amber-600 mt-0.5 text-sm"></i>
-                <div>
-                    <strong>नियम:</strong> किसी भी विकल्प (A, B, C, D) पर टच करते ही तुरंत सही या गलत का पता चल जाएगा और स्वचालित रूप से अगला प्रश्न आएगा। अंत में पूरे टेस्ट का <strong>Score Card</strong> मिलेगा जिसका स्क्रीनशॉट आप सर को भेज सकते हैं।
+            <div class="subject-btn" onclick="startQuiz('english')">
+                <div class="info">
+                    <h3>English (100 Marks)</h3>
+                    <p>Ch-3: A Pinch of Snuff • 50 Questions</p>
                 </div>
+                <div class="arrow">→</div>
             </div>
-        </section>
 
-
-        <!-- ================= SCREEN 2: ACTIVE QUESTION SCREEN ================= -->
-        <section id="screenQuiz" class="hidden flex-col space-y-3.5">
-            
-            <!-- Question Top Counter & Progress Bar -->
-            <div class="bg-white rounded-2xl p-3.5 shadow-sm border border-slate-200">
-                <div class="flex items-center justify-between text-xs font-bold text-slate-500 mb-1.5">
-                    <span id="activeSubjectBadge" class="px-2.5 py-0.5 bg-indigo-50 text-indigo-700 rounded-md">विषय</span>
-                    <span>प्रश्न: <span id="qCurrentNum" class="text-indigo-600 text-sm font-mono-num font-black">1</span> / 50</span>
+            <div class="subject-btn" onclick="startQuiz('math')">
+                <div class="info">
+                    <h3>गणित (Mathematics)</h3>
+                    <p>आव्यूह (Matrices) • 50 प्रश्न</p>
                 </div>
-                <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-                    <div id="qProgressBar" class="bg-gradient-to-r from-indigo-500 to-blue-600 h-2 rounded-full transition-all duration-300 w-[2%]"></div>
+                <div class="arrow">→</div>
+            </div>
+
+            <div class="subject-btn" onclick="startQuiz('chemistry')">
+                <div class="info">
+                    <h3>रसायन विज्ञान (Chemistry)</h3>
+                    <p>अध्याय 3: वैद्युतरसायन • 50 प्रश्न</p>
                 </div>
+                <div class="arrow">→</div>
             </div>
+        </div>
 
-            <!-- Question Card -->
-            <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 min-h-[130px] flex flex-col justify-center">
-                <span id="qTagBadge" class="text-[11px] font-bold text-indigo-600 uppercase tracking-wider mb-1">प्रश्न सं. 1</span>
-                <div id="questionContent" class="text-base sm:text-lg font-bold text-slate-800 leading-snug">
-                    <!-- Dynamic Question text and matrix -->
-                </div>
+        <!-- SCREEN 2: QUIZ -->
+        <div id="quizScreen" class="card hidden">
+            <div class="quiz-header">
+                <span id="qCountText" style="font-weight: 700; font-size: 0.9rem;">प्रश्न: 1 / 50</span>
+                <span id="timerText" class="timer">50:00</span>
             </div>
-
-            <!-- Options Container (A, B, C, D) -->
-            <div id="optionsWrapper" class="space-y-2.5 flex flex-col">
-                <!-- 4 Interactive buttons -->
+            <div class="progress-bar-wrap">
+                <div id="progressBar" class="progress-bar"></div>
             </div>
+            <div id="qText" class="q-text"></div>
+            <div id="optionsList" class="options-list"></div>
+        </div>
 
-            <!-- Question Jump Bar and Action Controls -->
-            <div class="flex items-center justify-between pt-1">
-                <button onclick="prevQuestion()" id="btnPrev" class="px-3.5 py-2.5 rounded-xl border border-slate-300 text-slate-600 text-xs font-bold hover:bg-slate-50 disabled:opacity-30 disabled:pointer-events-none transition flex items-center space-x-1">
-                    <i class="fa-solid fa-chevron-left"></i>
-                    <span>पिछला</span>
-                </button>
-
-                <button onclick="openQuestionPalette()" class="px-3.5 py-2.5 rounded-xl bg-slate-200 text-slate-700 text-xs font-bold hover:bg-slate-300 transition flex items-center space-x-1.5">
-                    <i class="fa-solid fa-table-cells"></i>
-                    <span>प्रश्न सूची (1-50)</span>
-                </button>
-
-                <button onclick="skipOrNext()" class="px-3.5 py-2.5 rounded-xl bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs font-bold hover:bg-indigo-100 transition flex items-center space-x-1">
-                    <span>छोड़ें (Skip)</span>
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
-            </div>
-        </section>
-
-
-        <!-- ================= SCREEN 3: RESULT & SCORE CARD ================= -->
-        <section id="screenResult" class="hidden space-y-4 py-1">
-            
-            <!-- OFFICIAL RESULT CERTIFICATE / SCREENSHOT CARD -->
-            <div id="captureScoreCard" class="bg-white rounded-3xl p-5 sm:p-6 shadow-md border-2 border-indigo-100 relative overflow-hidden">
-                <!-- Top Header banner -->
-                <div class="text-center pb-3 border-b border-dashed border-slate-200">
-                    <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white mx-auto flex items-center justify-center text-lg mb-1 shadow-md shadow-indigo-500/20">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <h2 class="text-base font-extrabold text-slate-900 tracking-tight">SGS BHOJPUR, DUMRAON</h2>
-                    <p class="text-xs text-indigo-700 font-semibold">Best Institute of Science • Mr. Sonu Sir</p>
-                    <div class="mt-1 inline-block px-3 py-0.5 rounded-full bg-slate-100 text-[11px] font-bold text-slate-600 uppercase">
-                        Official VVI Objective Score Card
-                    </div>
+        <!-- SCREEN 3: RESULT -->
+        <div id="resultScreen" class="hidden">
+            <div class="scorecard">
+                <h3 style="font-size: 1.15rem; font-weight: 800; color: #1e3a8a;">SGS BHOJPUR, DUMRAON</h3>
+                <p style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">OFFICIAL RESULT SCORE CARD</p>
+                
+                <div class="score-circle">
+                    <span id="resScore" class="score-num">0</span>
+                    <span class="score-total">OUT OF 50</span>
                 </div>
 
-                <!-- Student & Exam Details Grid -->
-                <div class="grid grid-cols-2 gap-2 text-xs py-3 border-b border-dashed border-slate-200">
-                    <div>
-                        <span class="text-slate-400 block font-medium">परीक्षार्थी (Name):</span>
-                        <span id="cardStudentName" class="font-bold text-slate-800 text-sm">--</span>
-                    </div>
-                    <div>
-                        <span class="text-slate-400 block font-medium">रोल नंबर (Roll No):</span>
-                        <span id="cardStudentRoll" class="font-bold text-slate-800 text-sm font-mono-num">--</span>
-                    </div>
-                    <div>
-                        <span class="text-slate-400 block font-medium">विषय (Subject):</span>
-                        <span id="cardSubjectName" class="font-bold text-indigo-800">--</span>
-                    </div>
-                    <div>
-                        <span class="text-slate-400 block font-medium">दिनांक (Date):</span>
-                        <span id="cardExamDate" class="font-bold text-slate-800">--</span>
-                    </div>
+                <div class="details-box">
+                    <p><strong>नाम:</strong> <span id="resName"></span></p>
+                    <p><strong>रोल नंबर:</strong> <span id="resRoll"></span></p>
+                    <p><strong>विषय:</strong> <span id="resSubject"></span></p>
+                    <p><strong>तारीख:</strong> <span id="resDate"></span></p>
+                    <p><strong>प्रतिशत (Percentage):</strong> <span id="resPerc"></span>%</p>
                 </div>
 
-                <!-- Big Score Showcase -->
-                <div class="my-4 p-4 rounded-2xl bg-gradient-to-br from-indigo-50 via-white to-blue-50 border border-indigo-100 text-center">
-                    <span class="text-[11px] uppercase tracking-wider font-bold text-slate-500">कुल प्राप्तांक (Total Marks)</span>
-                    <div class="flex items-baseline justify-center space-x-1 my-1">
-                        <span id="cardScoreTotal" class="text-5xl font-black text-indigo-600 font-mono-num">0</span>
-                        <span class="text-slate-400 font-bold text-xl">/ 50</span>
-                    </div>
-                    <div class="flex items-center justify-center space-x-2 text-xs font-bold mt-1">
-                        <span class="text-slate-600">प्रतिशत: <span id="cardPercentage" class="text-blue-700 font-mono-num text-sm">0%</span></span>
-                        <span>•</span>
-                        <span id="cardResultStatus" class="px-2.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800">उत्तीर्ण (PASS)</span>
-                    </div>
-                </div>
-
-                <!-- Detailed 3-Stat Counters -->
-                <div class="grid grid-cols-3 gap-2 text-center text-xs">
-                    <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-100">
-                        <span id="cardRightCount" class="block font-black text-emerald-700 text-lg font-mono-num">0</span>
-                        <span class="font-bold text-emerald-800 text-[11px]">सही (Right)</span>
-                    </div>
-                    <div class="p-2.5 rounded-xl bg-rose-50 border border-rose-100">
-                        <span id="cardWrongCount" class="block font-black text-rose-700 text-lg font-mono-num">0</span>
-                        <span class="font-bold text-rose-800 text-[11px]">गलत (Wrong)</span>
-                    </div>
-                    <div class="p-2.5 rounded-xl bg-slate-100 border border-slate-200">
-                        <span id="cardSkipCount" class="block font-black text-slate-700 text-lg font-mono-num">0</span>
-                        <span class="font-bold text-slate-600 text-[11px]">छोड़े गए</span>
-                    </div>
-                </div>
-
-                <!-- Screenshot Instruction for Sir -->
-                <div class="mt-4 p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-center text-[11px] text-amber-900 font-medium">
-                    <i class="fa-solid fa-camera mr-1 text-amber-600"></i>
-                    इस कार्ड का <strong>स्क्रीनशॉट (Screenshot)</strong> लेकर सर को WhatsApp पर भेजें।
-                </div>
+                <p style="font-size: 0.85rem; color: #059669; font-weight: 700; margin-top: 10px;">📸 इस स्क्रीनशॉट को सीधे सोनू सर को भेजें।</p>
             </div>
+        </div>
+    </div>
 
-            <!-- Restart & Change Subject Buttons -->
-            <div class="grid grid-cols-2 gap-3 no-print">
-                <button onclick="retestCurrentSubject()" class="w-full py-3 rounded-xl bg-indigo-600 text-white font-bold text-xs hover:bg-indigo-700 active:scale-95 transition flex items-center justify-center space-x-1.5 shadow-md shadow-indigo-600/20">
-                    <i class="fa-solid fa-arrow-rotate-right"></i>
-                    <span>फिर से टेस्ट दें</span>
-                </button>
-                <button onclick="goToSubjectSelection()" class="w-full py-3 rounded-xl bg-slate-800 text-white font-bold text-xs hover:bg-slate-900 active:scale-95 transition flex items-center justify-center space-x-1.5 shadow-md">
-                    <i class="fa-solid fa-layer-group"></i>
-                    <span>दूसरा विषय चुनें</span>
-                </button>
-            </div>
-
-            <!-- Full Review Breakdown Accordion Header -->
-            <div class="pt-2 flex items-center justify-between px-1">
-                <h4 class="text-sm font-bold text-slate-800 flex items-center">
-                    <i class="fa-solid fa-list-check mr-2 text-indigo-600"></i>
-                    उत्तर पुस्तिका समीक्षा (All 50 Answers)
-                </h4>
-            </div>
-
-            <!-- Review List Cards -->
-            <div id="fullReviewContainer" class="space-y-2.5 pb-6">
-                <!-- Dynamically populated answer review -->
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Modal: Question Jump Palette (1-50 grid) -->
-    <div id="paletteModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-sm w-full p-5 shadow-2xl space-y-4 max-h-[85vh] flex flex-col">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-                <h3 class="font-bold text-slate-800 text-sm">प्रश्न सूची (Question Navigator)</h3>
-                <button onclick="closeQuestionPalette()" class="w-7 h-7 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200">
-                    <i class="fa-solid fa-xmark text-xs"></i>
-                </button>
-            </div>
-            
-            <div class="flex items-center justify-around text-[11px] font-bold text-slate-600 py-1 bg-slate-50 rounded-xl">
-                <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-emerald-
+    <script>
+        const quizData = {
+            physics: [
+                {q:"1. विद्युत धारा का SI मात्रक है", o:["वोल्ट", "कूलॉम", "ओम", "एम्पियर"], a:3},
+                {q:"2. विद्युत धारा एक राशि है", o:["ध्रुवीय सदिश", "टेन्सर", "अदिश", "सदिश"], a:2},
+                {q:"3. ओम के नियम में V/I नियतांक को कहते हैं", o:["प्रतिरोधकता", "प्रतिरोध", "चालकता", "धारिता"], a:1},
+                {q:"4. प्रतिरोधकता (ρ) का SI मात्रक है", o:["म्हो", "ओम-मीटर", "ओम/मीटर", "ओम"], a:1},
+                {q:"5. चालकता का SI मात्रक है", o:["सीमेन", "वोल्ट", "ओम-मीटर", "ओम"], a:0},
+                {q:"6. आयतन नियत रखकर तार की लंबाई दोगुनी कर दी जाए, तो प्रतिरोध हो जाएगा", o:["एक-चौथाई", "दोगुना", "चार गुना", "आधा"], a:2},
+                {q:"7. तार की त्रिज्या दोगुनी कर दी जाए (लंबाई समान), तो प्रतिरोध हो जाएगा", o:["आधा", "दोगुना", "एक-चौथाई", "चार गुना"], a:2},
+                {q:"8. 2Ω, 3Ω तथा 6Ω के प्रतिरोध श्रेणीक्रम में जुड़े हैं, तुल्य प्रतिरोध होगा", o:["36 Ω", "6 Ω", "11 Ω", "1 Ω"], a:2},
+                {q:"9. 12Ω, 6Ω तथा 4Ω के प्रतिरोध समान्तर क्रम में जुड़े हैं, तुल्य प्रतिरोध होगा", o:["2 Ω", "22 Ω", "6 Ω", "0.5 Ω"], a:0},
+                {q:"10. 5Ω के प्रतिरोध से 2 A धारा बह रही है, विभवांतर होगा", o:["2.5 V", "25 V", "10 V", "7 V"], a:2},
+                {q:"11. धातु में इलेक्ट्रॉनों के अपवाह वेग की कोटि लगभग होती है", o:["10^-10 m/s", "10^-4 m/s", "10^3 m/s", "10^8 m/s"], a:1},
+                {q:"12. धारा (I) तथा अपवाह वेग (vd) में सम्बन्ध है", o:["I = neA/vd", "I = neAvd", "I = nevd/A", "I = nAvd/e"], a:1},
+                {q:"13. ताप बढ़ाने पर धातु का प्रतिरोध", o:["पहले घटता फिर बढ़ता", "बढ़ता है", "अपरिवर्तित", "घटता है"], a:1},
+                {q:"14. प्रतिरोध के ताप गुणांक (α) का SI मात्रक है", o:["K", "Ω m", "Ω", "K^-1"], a:3},
+                {q:"15. ताप बढ़ाने पर अर्धचालक का प्रतिरोध", o:["शून्य", "बढ़ता है", "अपरिवर्तित", "घटता है"], a:3},
+                {q:"16. निम्न में कौन ओमीय चालक नहीं है?", o:["ताँबे का तार", "चाँदी का तार", "एल्युमिनियम का तार", "अर्धचालक डायोड"], a:3},
+                {q:"17. मानक प्रतिरोध बनाने में प्रयुक्त पदार्थ है", o:["ताँबा", "मैंगनिन", "लोहा", "चाँदी"], a:1},
+                {q:"18. हीटर का तार बनाया जाता है", o:["नाइक्रोम का", "टंगस्टन का", "ताँबे का", "चाँदी का"], a:0},
+                {q:"19. फ्यूज का तार बना होता है", o:["टंगस्टन का", "ताँबे का", "टिन व सीसे की मिश्रधातु का", "नाइक्रोम का"], a:2},
+                {q:"20. विद्युत शक्ति का SI मात्रक है", o:["किलोवाट-घंटा", "जूल", "वोल्ट", "वाट"], a:3},
+                {q:"21. 1 किलोवाट-घंटा (kWh) बराबर होता है", o:["3.6 × 10^6 J", "36 × 10^3 J", "3.6 × 10^3 J", "1000 J"], a:0},
+                {q:"22. 220 V, 100 W के बल्ब का प्रतिरोध होता है", o:["22 Ω", "48.4 Ω", "484 Ω", "2.2 Ω"], a:2},
+                {q:"23. 60 W का बल्ब 10 घंटे जलने पर कितनी यूनिट ऊर्जा खर्च करेगा?", o:["6 यूनिट", "0.6 यूनिट", "0.06 यूनिट", "60 यूनिट"], a:1},
+                {q:"24. जूल के नियमानुसार उत्पन्न ऊष्मा H =", o:["I^2 R t", "I R^2 t", "I^2 R / t", "I R t^2"], a:0},
+                {q:"25. 5Ω के प्रतिरोध में 2A धारा 10s तक प्रवाहित करने पर ऊष्मा होगी", o:["100 J", "50 J", "20 J", "200 J"], a:3},
+                {q:"26. सेल का विद्युत वाहक बल (emf) बराबर होता है", o:["आवेश के", "खुले परिपथ में टर्मिनल विभवांतर के", "बंद परिपथ विभवांतर के", "आंतरिक प्रतिरोध के"], a:1},
+                {q:"27. परिपथ में धारा I =", o:["E / (R+r)", "E / (R-r)", "E / R", "E (R+r)"], a:0},
+                {q:"28. धारा देते समय सेल का टर्मिनल विभवांतर V =", o:["Ir - E", "E - Ir", "E + Ir", "E / Ir"], a:1},
+                {q:"29. emf 2V, आंतरिक प्रतिरोध 1Ω का सेल 3Ω से जुड़ा है, धारा होगी", o:["0.5 A", "0.67 A", "1 A", "2 A"], a:0},
+                {q:"30. आवेशित होते समय सेल का टर्मिनल विभवांतर emf से", o:["अधिक होता है", "शून्य होता है", "बराबर होता है", "कम होता है"], a:0},
+                {q:"31. n सर्वसम सेल श्रेणीक्रम में हों, तो कुल emf होगा", o:["nE", "E/n", "E", "n^2 E"], a:0},
+                {q:"32. n सर्वसम सेल समान्तर क्रम में हों, तो तुल्य आंतरिक प्रतिरोध होगा", o:["n^2 r", "r", "r / n", "nr"], a:2},
+                {q:"33. किरचॉफ का प्रथम नियम (संधि नियम) आधारित है", o:["द्रव्यमान पर", "ऊर्जा पर", "आवेश संरक्षण पर", "संवेग पर"], a:2},
+                {q:"34. किरचॉफ का द्वितीय नियम (लूप नियम) आधारित है", o:["ऊर्जा संरक्षण पर", "आवेश पर", "कोणीय संवेग पर", "संवेग पर"], a:0},
+                {q:"35. व्हीटस्टोन सेतु की संतुलन अवस्था शर्त है", o:["P/Q = R/S", "P/R = S/Q", "P Q = R S", "P + Q = R + S"], a:0},
+                {q:"36. मीटर सेतु कार्य करता है", o:["जूल नियम पर", "फैराडे नियम पर", "व्हीटस्टोन सेतु के सिद्धांत पर", "विभवमापी पर"], a:2},
+                {q:"37. विभवमापी का सिद्धांत: विभवपात तार की लंबाई के", o:["व्युत्क्रमानुपाती होता है", "वर्ग के समानुपाती", "निर्भर नहीं करता", "समानुपाती होता है"], a:3},
+                {q:"38. emf मापने में विभवमापी वोल्टमीटर से श्रेष्ठ है क्योंकि", o:["छोटा होता है", "अधिक धारा लेता है", "सस्ता होता है", "सेल से धारा नहीं लेता"], a:3},
+                {q:"39. विभवमापी द्वारा emf तुलना में E1/E2 =", o:["l1 × l2", "l2 / l1", "l1 / l2", "l1 - l2"], a:2},
+                {q:"40. आदर्श वोल्टमीटर का प्रतिरोध होता है", o:["100 Ω", "1 Ω", "शून्य", "अनन्त"], a:3},
+                {q:"41. आदर्श अमीटर का प्रतिरोध होता है", o:["1 Ω", "100 Ω", "अनन्त", "शून्य"], a:3},
+                {q:"42. अमीटर को परिपथ में जोड़ा जाता है", o:["समान्तर क्रम में", "श्रेणीक्रम में", "दोनों में", "किसी में नहीं"], a:1},
+                {q:"43. वोल्टमीटर को परिपथ में जोड़ा जाता है", o:["श्रेणीक्रम में", "समान्तर क्रम में", "दोनों में", "किसी में नहीं"], a:1},
+                {q:"44. गैल्वेनोमीटर को अमीटर में बदलने के लिए जोड़ते हैं", o:["कम प्रतिरोध श्रेणी में", "कम प्रतिरोध समान्तर में", "उच्च प्रतिरोध श्रेणी में", "उच्च प्रतिरोध समान्तर में"], a:1},
+                {q:"45. गैल्वेनोमीटर को वोल्टमीटर में बदलने के लिए जोड़ते हैं", o:["कम प्रतिरोध श्रेणी में", "उच्च प्रतिरोध श्रेणीक्रम में", "कम प्रतिरोध समान्तर में", "उच्च प्रतिरोध समान्तर में"], a:1},
+                {q:"46. कार्बन प्रतिरोध कोडिंग में लाल रंग का मान होता है", o:["2", "3", "1", "5"], a:0},
+                {q:"47. श्रेणीक्रम में कौन-सी राशि सभी में समान रहती है?", o:["विभवांतर", "ऊष्मा", "धारा", "शक्ति"], a:2},
+                {q:"48. धारा घनत्व (J) का SI मात्रक है", o:["A/m", "A m", "A m^2", "A/m^2"], a:3},
+                {q:"49. इलेक्ट्रॉन गतिशीलता का SI मात्रक है", o:["m^2 V^-1 s^-1", "m^2 V s^-1", "m V^-1 s^-1", "V m^-1"], a:0},
+                {q:"50. श्रांतिकाल बढ़ने पर चालक की प्रतिरोधकता", o:["बढ़ती है", "अपरिवर्तित", "दोगुनी", "घटती है"], a:3}
+            ],
+            english: [
+                {q:"1. 'A Pinch of Snuff' was written by", o:["Ruskin Bond", "Manohar Malgonkar", "R. K. Narayan", "Khushwant Singh"], a:1},
+                {q:"2. 'A Pinch of Snuff' is a", o:["comic (humorous) story", "tragic play", "biography", "travel essay"], a:0},
+                {q:"3. The story is taken from", o:["Flamingo", "Malgudi Days", "Vistas", "Contemporary Indian Short Stories in English"], a:3},
+                {q:"4. Nanukaka is the narrator's", o:["paternal uncle", "elder brother", "maternal uncle", "grandfather"], a:2},
+                {q:"5. The narrator is an Under-Secretary", o:["on leave", "on probation", "retired", "permanent"], a:1},
+                {q:"6. Nanukaka came to Delhi to see", o:["a Minister", "a doctor", "a Maharaja", "a Judge"], a:0},
+                {q:"7. Nanukaka said he could stay in Delhi for", o:["a month", "one week", "one year", "two or three days"], a:3},
+                {q:"8. The narrator suggested sending a wire saying he was", o:["ill", "dead", "transferred", "on a tour"], a:2},
+                {q:"9. According to mother, if Nanukaka wanted to see a Minister, he would", o:["give up", "manage to see him", "fail", "take weeks"], a:1},
+                {q:"10. The narrator regarded Ministers as being", o:["two steps higher than God", "equal to Secretaries", "below Secretaries", "like ordinary men"], a:0},
+                {q:"11. Nanukaka wore an old-fashioned knee-length", o:["white kurta", "blue suit", "brown shirt", "black coat"], a:3},
+                {q:"12. Nanukaka's pugree was made of", o:["white cotton", "blue wool", "red silk", "yellow khadi"], a:2},
+                {q:"13. Nanukaka was a", o:["Marwari trader", "Deccani Brahmin", "Punjabi Sikh", "Bengali Babu"], a:1},
+                {q:"14. At the station, Nanukaka handed the narrator a basket containing", o:["a kitten", "fruits", "sweets", "a puppy"], a:0},
+                {q:"15. While running out of the station, the narrator bumped into", o:["a ticket inspector", "a Sikh bridegroom", "a tonga-wala", "an enormous Marwari woman in a burka"], a:3},
+                {q:"16. Nanukaka travelled in a second class carriage on a", o:["first class ticket", "free pass", "third class ticket", "reserved ticket"], a:2},
+                {q:"17. The kitten travelled", o:["on a half ticket", "free", "on a full ticket", "in the guard's van"], a:1},
+                {q:"18. The narrator secretly hoped that the kitten was", o:["dead", "happy", "hungry", "playful"], a:0},
+                {q:"19. When the narrator said he could not arrange an interview, Nanukaka", o:["shouted at him", "left the car", "wept loudly", "took a pinch of snuff and closed his eyes"], a:3},
+                {q:"20. The mother had put Nanukaka in narrator's", o:["office", "drawing room", "bedroom", "garage"], a:2},
+                {q:"21. The narrator had to sleep on a charpoy in the", o:["kitchen", "back verandah", "garden", "car"], a:1},
+                {q:"22. The narrator took ___ day(s) leave from office.", o:["two", "one", "five", "ten"], a:0},
+                {q:"23. Nanukaka went to see the Minister at", o:["Lala's house", "Parliament Hall", "the railway station", "the North Block"], a:3},
+                {q:"24. Nanukaka finally got an appointment from a", o:["Minister", "Prime Minister", "Deputy-Secretary", "Chaprasi"], a:2},
+                {q:"25. The appointment was given for", o:["the same day", "three days later", "next month", "next year"], a:1},
+                {q:"26. When angry, Nanukaka used", o:["Marathi swearwords", "Hindi poems", "English idioms", "Sanskrit shlokas"], a:0},
+                {q:"27. The yellow sports car was driven by", o:["Hajrat Barkat Ali", "Lala Sohanlal", "the Minister", "Ratiram"], a:3},
+                {q:"28. Ratiram was the son of", o:["Hajrat Barkat Ali", "the Welfare Minister", "Sohanlal Ratiram", "Nanukaka"], a:2},
+                {q:"29. Sohanlal Ratiram was the", o:["Ambassador", "Party Boss in Delhi", "Zamindar", "Secretary"], a:1},
+                {q:"30. Ratiram was expected to go as Trade Commissioner to", o:["Hajrat Barkat Ali", "Beirut's King", "Geneva", "Prince of Ninnore"], a:0},
+                {q:"31. 'Amicably' me
