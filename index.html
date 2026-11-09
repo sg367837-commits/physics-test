@@ -1,0 +1,328 @@
+```html
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGS Bhojpur - Class 12th Objective Test</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Hind', 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-mono-num {
+            font-family: 'Space Grotesk', monospace;
+        }
+        /* Matrix grid layout styling */
+        .matrix-bracket {
+            display: inline-flex;
+            align-items: center;
+            border-left: 2px solid currentColor;
+            border-right: 2px solid currentColor;
+            border-radius: 4px;
+            padding: 2px 6px;
+            margin: 0 3px;
+            position: relative;
+            vertical-align: middle;
+        }
+        .matrix-bracket::before, .matrix-bracket::after {
+            content: "";
+            position: absolute;
+            left: -2px;
+            right: -2px;
+            height: 3px;
+            border-left: 2px solid currentColor;
+            border-right: 2px solid currentColor;
+        }
+        .matrix-bracket::before { top: 0; border-top: 2px solid currentColor; }
+        .matrix-bracket::after { bottom: 0; border-bottom: 2px solid currentColor; }
+        
+        .det-bracket {
+            display: inline-flex;
+            align-items: center;
+            border-left: 2px solid currentColor;
+            border-right: 2px solid currentColor;
+            padding: 2px 6px;
+            margin: 0 3px;
+            vertical-align: middle;
+        }
+
+        @media print {
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen text-slate-800 flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="bg-gradient-to-r from-indigo-700 via-blue-700 to-indigo-800 text-white shadow-md sticky top-0 z-40">
+        <div class="max-w-xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2.5">
+                <div class="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center font-bold text-lg border border-white/30 text-yellow-300">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h1 class="text-sm sm:text-base font-bold tracking-tight leading-tight">SGS BHOJPUR, DUMRAON</h1>
+                    <p class="text-xs text-blue-100">Best Institute of Science • Mr. Sonu Sir</p>
+                </div>
+            </div>
+            <div id="headerTimer" class="hidden items-center space-x-1.5 bg-black/20 px-3 py-1 rounded-full text-xs font-mono font-bold text-emerald-300 border border-white/10">
+                <i class="fa-regular fa-clock"></i>
+                <span id="timerDisplay">50:00</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-xl w-full mx-auto p-4 flex flex-col justify-center">
+
+        <!-- ================= SCREEN 1: DETAILS & SUBJECT SELECTION ================= -->
+        <section id="screenEntry" class="space-y-4">
+            
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                <div class="inline-block px-3 py-0.5 rounded-full bg-blue-50 text-blue-700 font-bold text-xs uppercase tracking-wider mb-2">
+                    Class 12th VVI Objective Test
+                </div>
+                <h2 class="text-xl font-bold text-slate-800">विद्यार्थी विवरण (Student Info)</h2>
+                <p class="text-xs text-slate-500 mt-1">
+                    टेस्ट शुरू करने से पहले अपना नाम और रोल नंबर भरें, ताकि रिजल्ट कार्ड में आपका नाम आ सके।
+                </p>
+
+                <!-- Input Form -->
+                <div class="mt-4 space-y-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">विद्यार्थी का नाम (Full Name) *</label>
+                        <div class="relative">
+                            <i class="fa-regular fa-user absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+                            <input type="text" id="studentNameInput" placeholder="उदा. अमन कुमार" class="w-full pl-10 pr-3 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50 focus:bg-white font-medium transition">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">रोल नंबर (Roll No.) *</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-id-badge absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+                            <input type="number" id="studentRollInput" placeholder="उदा. 12045" class="w-full pl-10 pr-3 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50 focus:bg-white font-medium transition">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Choose Subject -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-bold text-slate-700 uppercase tracking-wider px-1">विषय चुनें (Select Subject):</h3>
+
+                <!-- Subject 1: Math (Matrices) -->
+                <div onclick="prepareAndStartQuiz('math')" class="cursor-pointer bg-white rounded-2xl p-4 shadow-sm border-2 border-transparent hover:border-indigo-600 transition active:scale-[0.98] flex items-center justify-between group">
+                    <div class="flex items-center space-x-3.5">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl font-bold group-hover:bg-indigo-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-800">गणित (Maths)</span>
+                            <h4 class="text-base font-bold text-slate-800 mt-0.5">आव्यूह (Matrices) Test</h4>
+                            <p class="text-xs text-slate-500">50 महत्वपूर्ण वस्तुनिष्ठ प्रश्न • 50 मिनट</p>
+                        </div>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-indigo-600 group-hover:text-white flex items-center justify-center text-slate-400 transition">
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </div>
+                </div>
+
+                <!-- Subject 2: Chemistry (Electrochemistry) -->
+                <div onclick="prepareAndStartQuiz('chem')" class="cursor-pointer bg-white rounded-2xl p-4 shadow-sm border-2 border-transparent hover:border-emerald-600 transition active:scale-[0.98] flex items-center justify-between group">
+                    <div class="flex items-center space-x-3.5">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold group-hover:bg-emerald-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-flask-vial"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">रसायन विज्ञान (Chemistry)</span>
+                            <h4 class="text-base font-bold text-slate-800 mt-0.5">अध्याय 3: वैद्युतरसायन Test</h4>
+                            <p class="text-xs text-slate-500">50 महत्वपूर्ण वस्तुनिष्ठ प्रश्न • 50 मिनट</p>
+                        </div>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-emerald-600 group-hover:text-white flex items-center justify-center text-slate-400 transition">
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instruction Box -->
+            <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-start space-x-2.5">
+                <i class="fa-solid fa-circle-info text-amber-600 mt-0.5 text-sm"></i>
+                <div>
+                    <strong>नियम:</strong> किसी भी विकल्प (A, B, C, D) पर टच करते ही तुरंत सही या गलत का पता चल जाएगा और स्वचालित रूप से अगला प्रश्न आएगा। अंत में पूरे टेस्ट का <strong>Score Card</strong> मिलेगा जिसका स्क्रीनशॉट आप सर को भेज सकते हैं।
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SCREEN 2: ACTIVE QUESTION SCREEN ================= -->
+        <section id="screenQuiz" class="hidden flex-col space-y-3.5">
+            
+            <!-- Question Top Counter & Progress Bar -->
+            <div class="bg-white rounded-2xl p-3.5 shadow-sm border border-slate-200">
+                <div class="flex items-center justify-between text-xs font-bold text-slate-500 mb-1.5">
+                    <span id="activeSubjectBadge" class="px-2.5 py-0.5 bg-indigo-50 text-indigo-700 rounded-md">विषय</span>
+                    <span>प्रश्न: <span id="qCurrentNum" class="text-indigo-600 text-sm font-mono-num font-black">1</span> / 50</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                    <div id="qProgressBar" class="bg-gradient-to-r from-indigo-500 to-blue-600 h-2 rounded-full transition-all duration-300 w-[2%]"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 min-h-[130px] flex flex-col justify-center">
+                <span id="qTagBadge" class="text-[11px] font-bold text-indigo-600 uppercase tracking-wider mb-1">प्रश्न सं. 1</span>
+                <div id="questionContent" class="text-base sm:text-lg font-bold text-slate-800 leading-snug">
+                    <!-- Dynamic Question text and matrix -->
+                </div>
+            </div>
+
+            <!-- Options Container (A, B, C, D) -->
+            <div id="optionsWrapper" class="space-y-2.5 flex flex-col">
+                <!-- 4 Interactive buttons -->
+            </div>
+
+            <!-- Question Jump Bar and Action Controls -->
+            <div class="flex items-center justify-between pt-1">
+                <button onclick="prevQuestion()" id="btnPrev" class="px-3.5 py-2.5 rounded-xl border border-slate-300 text-slate-600 text-xs font-bold hover:bg-slate-50 disabled:opacity-30 disabled:pointer-events-none transition flex items-center space-x-1">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <span>पिछला</span>
+                </button>
+
+                <button onclick="openQuestionPalette()" class="px-3.5 py-2.5 rounded-xl bg-slate-200 text-slate-700 text-xs font-bold hover:bg-slate-300 transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-table-cells"></i>
+                    <span>प्रश्न सूची (1-50)</span>
+                </button>
+
+                <button onclick="skipOrNext()" class="px-3.5 py-2.5 rounded-xl bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs font-bold hover:bg-indigo-100 transition flex items-center space-x-1">
+                    <span>छोड़ें (Skip)</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= SCREEN 3: RESULT & SCORE CARD ================= -->
+        <section id="screenResult" class="hidden space-y-4 py-1">
+            
+            <!-- OFFICIAL RESULT CERTIFICATE / SCREENSHOT CARD -->
+            <div id="captureScoreCard" class="bg-white rounded-3xl p-5 sm:p-6 shadow-md border-2 border-indigo-100 relative overflow-hidden">
+                <!-- Top Header banner -->
+                <div class="text-center pb-3 border-b border-dashed border-slate-200">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white mx-auto flex items-center justify-center text-lg mb-1 shadow-md shadow-indigo-500/20">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h2 class="text-base font-extrabold text-slate-900 tracking-tight">SGS BHOJPUR, DUMRAON</h2>
+                    <p class="text-xs text-indigo-700 font-semibold">Best Institute of Science • Mr. Sonu Sir</p>
+                    <div class="mt-1 inline-block px-3 py-0.5 rounded-full bg-slate-100 text-[11px] font-bold text-slate-600 uppercase">
+                        Official VVI Objective Score Card
+                    </div>
+                </div>
+
+                <!-- Student & Exam Details Grid -->
+                <div class="grid grid-cols-2 gap-2 text-xs py-3 border-b border-dashed border-slate-200">
+                    <div>
+                        <span class="text-slate-400 block font-medium">परीक्षार्थी (Name):</span>
+                        <span id="cardStudentName" class="font-bold text-slate-800 text-sm">--</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block font-medium">रोल नंबर (Roll No):</span>
+                        <span id="cardStudentRoll" class="font-bold text-slate-800 text-sm font-mono-num">--</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block font-medium">विषय (Subject):</span>
+                        <span id="cardSubjectName" class="font-bold text-indigo-800">--</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block font-medium">दिनांक (Date):</span>
+                        <span id="cardExamDate" class="font-bold text-slate-800">--</span>
+                    </div>
+                </div>
+
+                <!-- Big Score Showcase -->
+                <div class="my-4 p-4 rounded-2xl bg-gradient-to-br from-indigo-50 via-white to-blue-50 border border-indigo-100 text-center">
+                    <span class="text-[11px] uppercase tracking-wider font-bold text-slate-500">कुल प्राप्तांक (Total Marks)</span>
+                    <div class="flex items-baseline justify-center space-x-1 my-1">
+                        <span id="cardScoreTotal" class="text-5xl font-black text-indigo-600 font-mono-num">0</span>
+                        <span class="text-slate-400 font-bold text-xl">/ 50</span>
+                    </div>
+                    <div class="flex items-center justify-center space-x-2 text-xs font-bold mt-1">
+                        <span class="text-slate-600">प्रतिशत: <span id="cardPercentage" class="text-blue-700 font-mono-num text-sm">0%</span></span>
+                        <span>•</span>
+                        <span id="cardResultStatus" class="px-2.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800">उत्तीर्ण (PASS)</span>
+                    </div>
+                </div>
+
+                <!-- Detailed 3-Stat Counters -->
+                <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                    <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-100">
+                        <span id="cardRightCount" class="block font-black text-emerald-700 text-lg font-mono-num">0</span>
+                        <span class="font-bold text-emerald-800 text-[11px]">सही (Right)</span>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-rose-50 border border-rose-100">
+                        <span id="cardWrongCount" class="block font-black text-rose-700 text-lg font-mono-num">0</span>
+                        <span class="font-bold text-rose-800 text-[11px]">गलत (Wrong)</span>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-slate-100 border border-slate-200">
+                        <span id="cardSkipCount" class="block font-black text-slate-700 text-lg font-mono-num">0</span>
+                        <span class="font-bold text-slate-600 text-[11px]">छोड़े गए</span>
+                    </div>
+                </div>
+
+                <!-- Screenshot Instruction for Sir -->
+                <div class="mt-4 p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-center text-[11px] text-amber-900 font-medium">
+                    <i class="fa-solid fa-camera mr-1 text-amber-600"></i>
+                    इस कार्ड का <strong>स्क्रीनशॉट (Screenshot)</strong> लेकर सर को WhatsApp पर भेजें।
+                </div>
+            </div>
+
+            <!-- Restart & Change Subject Buttons -->
+            <div class="grid grid-cols-2 gap-3 no-print">
+                <button onclick="retestCurrentSubject()" class="w-full py-3 rounded-xl bg-indigo-600 text-white font-bold text-xs hover:bg-indigo-700 active:scale-95 transition flex items-center justify-center space-x-1.5 shadow-md shadow-indigo-600/20">
+                    <i class="fa-solid fa-arrow-rotate-right"></i>
+                    <span>फिर से टेस्ट दें</span>
+                </button>
+                <button onclick="goToSubjectSelection()" class="w-full py-3 rounded-xl bg-slate-800 text-white font-bold text-xs hover:bg-slate-900 active:scale-95 transition flex items-center justify-center space-x-1.5 shadow-md">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>दूसरा विषय चुनें</span>
+                </button>
+            </div>
+
+            <!-- Full Review Breakdown Accordion Header -->
+            <div class="pt-2 flex items-center justify-between px-1">
+                <h4 class="text-sm font-bold text-slate-800 flex items-center">
+                    <i class="fa-solid fa-list-check mr-2 text-indigo-600"></i>
+                    उत्तर पुस्तिका समीक्षा (All 50 Answers)
+                </h4>
+            </div>
+
+            <!-- Review List Cards -->
+            <div id="fullReviewContainer" class="space-y-2.5 pb-6">
+                <!-- Dynamically populated answer review -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal: Question Jump Palette (1-50 grid) -->
+    <div id="paletteModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-5 shadow-2xl space-y-4 max-h-[85vh] flex flex-col">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                <h3 class="font-bold text-slate-800 text-sm">प्रश्न सूची (Question Navigator)</h3>
+                <button onclick="closeQuestionPalette()" class="w-7 h-7 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200">
+                    <i class="fa-solid fa-xmark text-xs"></i>
+                </button>
+            </div>
+            
+            <div class="flex items-center justify-around text-[11px] font-bold text-slate-600 py-1 bg-slate-50 rounded-xl">
+                <span class="flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-emerald-
